@@ -1,0 +1,17 @@
+<html>
+    <head>
+ <php include 'CreatePosts.php';?>
+    </head>
+<body>
+<h1> Add Post </h1>
+    <form name="postcreation" action="CreatePosts.php" method="post">
+      <br><h4>Please enter a User_ID</h4>
+        <input  type="text" name="userID" required="required"><br>
+
+      <br><h4>Type Post here</h4>
+        <textarea   rows="8" cols="80" name="post" required="required"></textarea><br>
+
+        <input type="submit" value = "Submit Post">
+    </form>
+</body>
+</html>

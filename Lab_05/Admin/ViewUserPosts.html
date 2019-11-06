@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title> View User Posts</title>
+     <php include 'ViewUserPosts.php';?>
+    </head>
+<body>
+<h1> Select a User from the Dropdown</h1>
+<form method = "POST" action = "ViewUserPosts.php">
+<?php
+$mysqli = new mysqli("mysql.eecs.ku.edu", "markusbecerra", "UngohNg4", "markusbecerra");
+$sql = "SELECT * FROM users";
+$result = $mysqli->query($sql);
+echo "<select name='userid'>";
+
+if ($result->num_rows > 0) {
+ // output data of each row
+ while($row = $result->fetch_assoc()) {
+echo "<option value =" . $row["user_id"] .">" . $row["user_id"] . "</Option>";
+ }
+echo "</select>";
+
+}
+$result -> free();
+/* close connection */
+$mysqli->close();
+?>
+<br>
+<br>
+<input type="submit" value="Submit">
+</form>
+
+
+</body>
+
+</html>

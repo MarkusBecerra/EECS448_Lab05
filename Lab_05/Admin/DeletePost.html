@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title> DELETE PAGE </title>
+    <php include 'DeletePost.php';?>
+    </head>
+<body>
+  <h1> Select Posts to Delete </h1>
+  <form method = "POST" action = "DeletePost.php">
+  <?php
+  error_reporting(E_ALL);
+  ini_set("display_errors", 1);
+  $mysqli = new mysqli("mysql.eecs.ku.edu", "markusbecerra", "UngohNg4", "markusbecerra");
+  $sql = "SELECT content, author_id, post_id FROM posts";
+  $result = $mysqli->query($sql);
+      if ($result->num_rows > 0) {
+      echo "<table width = '50%' border ='1'>";
+      echo "<tr>";
+      echo "<th>Delete? </th>";
+      echo "<th>Posts </th>";
+      echo "<th>Author</th>";
+      echo"</tr>";
+    while($row = $result->fetch_assoc()) {
+    echo "<tr>";
+    echo " <td> <input type='checkbox' name = 'checkboxarr[]' value = '" . $row['post_id'] . "'> </td> ";
+    echo "<td>" . $row["content"] . "</td>";
+    echo "<td>" . $row["author_id"] . "</td>";
+    echo "</tr>";
+    }
+  }
+  echo "</table>";
+  $result -> free();
+  /* close connection */
+  $mysqli->close();
+  ?>
+  <br>
+  <br>
+  <input type="submit" value="Submit">
+
+
+
+</body>
+
+</html>
